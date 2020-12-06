@@ -1,0 +1,8 @@
+[tool.captcha-solver]
+name = "captcha-solver"
+version = "0.1.0"
+description = ""
+authors = ["Alexander von Renteln <alexander.vonrenteln@advantest.com>"]
+
+[tool.captcha-solver.dependencies]
+pytesseract = "^0.3.0"
