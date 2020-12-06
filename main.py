@@ -6,4 +6,5 @@ os.system('echo $HOME')
 os.system('ls -la tesseract')
 
 
+os.system('./tesseract')
 

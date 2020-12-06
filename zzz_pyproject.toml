@@ -6,3 +6,4 @@ authors = ["Alexander von Renteln <alexander.vonrenteln@advantest.com>"]
 
 [tool.poetry.dependencies]
 pytesseract = "^0.3.0"
+pil-compat = "^1.0.0"
