@@ -1,7 +1,7 @@
 [tool.captcha-solver]
 name = "captcha-solver"
 version = "0.1.0"
-description = ""
+description = "Solving CAPTCHAs"
 authors = ["Alexander von Renteln <alexander.vonrenteln@advantest.com>"]
 
 [tool.captcha-solver.dependencies]
