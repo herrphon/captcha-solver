@@ -1,30 +1,13 @@
-require 'chunky_png'
-require 'ocr_space'
+require_relative('http')
+require_relative('image')
+require_relative('ocr_2')
 
 
-captcha = ChunkyPNG::Image.from_file('captcha.png')
+# bordered_img = create_bordered_img('img/captcha.png')
+# puts bordered_img
 
-png = ChunkyPNG::Image.new(500, 500)  #, ChunkyPNG::Color::TRANSPARENT)
-png.compose!(captcha, 200, 200)
-png.save('test.png', :fast_rgba) # Force the fast saving routine.
-
-
-puts ENV["OCR_API_KEY"][0..2]
-
-resource = OcrSpace::Resource.new(apikey: ENV["OCR_API_KEY"])
-
-file = File.expand_path('test.png').to_s
-puts file
+# ocr()
 
 
-result = resource.clean_convert file: file
-puts result
-
-
-result = resource.convert file: file
-
-puts result.inspect #Raw result
-
-puts "asdf"
-
+get_captcha
 
