@@ -12,15 +12,32 @@ def ocr(file="img/test.png")
 	result = resource.convert file: file
 	puts "result:", result
 
+end
 
-	res = HTTParty.post(
+
+
+
+def ocr_alt(file="img/test.png")
+
+end
+
+
+
+def ocr_alt_3(file="img/test.png")
+  # https://ocr.space/ocrapi
+
+  file = File.expand_path('img/captcha_test.png')
+  data = File.open(file).read
+  encoded = Base64.strict_encode64(data)
+
+  puts encoded
+
+  res = HTTParty.post(
 		'https://api.ocr.space/parse/image',
 		body: {
-			apikey: ENV["OCR_API_KEY"],
-			language: "eng",
-			ocrEngine: 1,
-			isOverlayRequired: true,
-			file: file
+      apikey: ENV["OCR_API_KEY"],
+      filetype: 'png',
+			base64Image: encoded
 		}
 	)
 
@@ -28,11 +45,16 @@ def ocr(file="img/test.png")
 
 	result = res.parsed_response['ParsedResults']
 	puts "result: ", result
+
 end
 
 
-def ocr_alt(file="img/test.png")
-"""curl 'https://api8.ocr.space/parse/image' \
+
+
+
+def ocr_alt2(file="img/test.png")
+=begin
+  curl 'https://api8.ocr.space/parse/image' \
   -H 'authority: api8.ocr.space' \
   -H 'pragma: no-cache' \
   -H 'cache-control: no-cache' \
@@ -48,5 +70,5 @@ def ocr_alt(file="img/test.png")
   -H 'accept-language: en-US,en;q=0.9,de-DE;q=0.8,de;q=0.7' \
   --data-binary $'------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="file"; filename="test.png"\r\nContent-Type: image/png\r\n\r\n\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="url"\r\n\r\n\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="language"\r\n\r\neng\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="isOverlayRequired"\r\n\r\ntrue\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="FileType"\r\n\r\n.Auto\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="IsCreateSearchablePDF"\r\n\r\nfalse\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="isSearchablePdfHideTextLayer"\r\n\r\ntrue\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="detectOrientation"\r\n\r\nfalse\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="isTable"\r\n\r\nfalse\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="scale"\r\n\r\ntrue\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="OCREngine"\r\n\r\n1\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="detectCheckbox"\r\n\r\nfalse\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk\r\nContent-Disposition: form-data; name="checkboxTemplate"\r\n\r\n0\r\n------WebKitFormBoundaryzY7BM6NOi6cgIEnk--\r\n' \
   --compressed
-  """
+=end
 end
