@@ -26,6 +26,6 @@ def get_captcha
   matcher = re.match(body)
   picture_url = matcher[1]
 
-  result = save_to_tempfile("http://online.guc-asic.com#{picture_url}")
-  puts result
+  file = save_to_tempfile("http://online.guc-asic.com#{picture_url}")
+  file.path
 end

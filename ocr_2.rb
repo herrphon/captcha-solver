@@ -1,17 +1,16 @@
-require 'ocr'
+require 'ocr_space'
 
-# https://github.com/mabarroso/ocr
 
-def ocr(file="img/captcha-test.png")
-  ocr = OCR.use :onlineocr
+def ocr(file="img/test.png")
+	puts "OCR_API_KEY: #{ENV['OCR_API_KEY'][0..2]} ..."
 
-  ocr.login ENV["OCR_WEBSERVICE_USERNAME"], ENV["OCR_WEBSERVICE_PASS"]
-  
-  ocr.format= :txt
-  #ocr.outputencoding="utf-8"
-  ocr.recognize
+	file = File.expand_path('test.png')
+	puts "File: #{file}"
 
-  puts "ERROR: #{ocr.error}" if ocr.error?
-  puts "RESULT: #{ocr.text}" unless ocr.error?
+	resource = OcrSpace::Resource.new(apikey: ENV["OCR_API_KEY"])
+	result = resource.convert file: file
+	puts "result:", result
+
 end
+
 

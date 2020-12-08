@@ -1,19 +1,15 @@
-require_relative('http')
-require_relative('image')
-require_relative('ocr_1')
+require_relative('captcha_getter')
+require_relative('image_preparator')
+require_relative('ocr_5')
 
 
-# get_captcha
+img = get_captcha
+puts img
 
+bordered_img = create_bordered_img(img)
+puts bordered_img
 
-
-# bordered_img = create_bordered_img('img/captcha.png')
-# puts bordered_img
-
-# ocr()
-
-
-ocr_alt()
+puts ocr(bordered_img)
 
 
 
